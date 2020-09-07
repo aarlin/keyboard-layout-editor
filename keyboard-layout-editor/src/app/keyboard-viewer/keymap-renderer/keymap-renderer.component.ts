@@ -9,20 +9,20 @@ import {
 import * as tc from 'tinycolor2';
 
 @Component({
-  selector: 'keyboard-preview',
-  templateUrl: './keyboard-preview.component.html',
-  styleUrls: ['./keyboard-preview.component.scss'],
+  selector: 'app-keymap-renderer',
+  templateUrl: './keymap-renderer.component.html',
+  styleUrls: ['./keymap-renderer.component.scss'],
 })
-export class KeyboardPreviewComponent implements OnInit, AfterViewInit {
+export class KeymapRendererComponent implements OnInit, AfterViewInit {
   @Input()
   kleKeyboard: any;
 
   @ViewChild('svgRenderer')
   svgRenderer: ElementRef;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     // resize svg to fit content after initial draw

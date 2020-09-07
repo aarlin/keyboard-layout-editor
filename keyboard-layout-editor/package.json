@@ -26,6 +26,9 @@
     "bootstrap": "^4.0.0",
     "jquery": "^3.5.1",
     "rxjs": "~6.5.4",
+    "tinycolor2": "^1.4.1",
+    "@qmk-helper/keyboard-converter": "git+https://github.com/qmk-helper/keyboard-converter.git",
+    "@qmk-helper/kle-serial": "git+https://github.com/qmk-helper/kle-serial.git",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

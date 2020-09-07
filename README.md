@@ -80,3 +80,10 @@ install uglify-js NOT uglifyjs
 install http-server OR serve
 
 Deleted references to cssparser
+
+
+---
+
+# References
+
+https://github.com/qmk-helper/keyboard-browser
