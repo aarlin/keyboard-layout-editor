@@ -584,15 +584,6 @@
 				$scope.kbFullHeight += 32;
 		};
 
-		function updateFromCss(css) {
-			var rules = $cssParser.parse(css);
-			$scope.customGlyphs = $renderKey.getGlyphsFromRules(rules); // glyphs first, before rules are modified!
-			$scope.customStyles = $sce.trustAsHtml($renderKey.sanitizeCssRules(rules));
-			if($scope.picker.sentinel === userGlyphsSentinel) {
-				$scope.picker.glyphs = $scope.customGlyphs;
-			}
-		}
-
 		// Given a key, generate the HTML needed to render it
 		function renderKey(key) {
 			key.html = $sce.trustAsHtml($renderKey.html(key,$sanitize));
@@ -615,7 +606,6 @@
 				}
 			}
 			$scope.meta = angular.copy($scope.keyboard.meta);
-			updateFromCss($scope.meta.css || '');
 		};
 
 		function updateSerialized() {
@@ -648,7 +638,6 @@
 
 					$scope.deserializeAndRender(jsonl.parse(json));
 					if(css) {
-						updateFromCss($scope.meta.css = css);
 						$scope.keyboard.meta.css = $scope.meta.css;
 					}
 					if(notes) {
@@ -777,7 +766,6 @@
 			$scope.unselectAll();
 			$scope.meta = angular.copy($scope.keyboard.meta);
 			if(type === 'customstyles' || type === 'preset' || type === 'upload' || type === 'rawdata') {
-				updateFromCss($scope.meta.css || '');
 			}
 		}
 
@@ -1314,7 +1302,6 @@
 				try {
 					$scope.customStylesException = "";
 					transaction("customstyles", function() {
-						updateFromCss($scope.meta.css);
 						$scope.keyboard.meta.css = $scope.meta.css;
 					});
 					$scope.calcKbHeight();

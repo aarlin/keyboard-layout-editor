@@ -67,3 +67,16 @@ Notes:
 * However, if you want to be able to log in to GitHub via OAuth (without
   hacking up the code and registering your own OAuth application), you will
   need to put the server at: http://localhost:8080/
+
+
+---
+
+Setup using WSL
+
+Install depedencies using Linux based system
+
+install uglify-js NOT uglifyjs
+
+install http-server OR serve
+
+Deleted references to cssparser

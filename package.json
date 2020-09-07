@@ -1,0 +1,33 @@
+{
+  "name": "keyboard-layout-editor",
+  "version": "1.0.0",
+  "description": "keyboard-layout-editor\r ----------------------\r [Keyboard-layout-editor.com](http://www.keyboard-layout-editor.com) (KLE) is a web\r application that enables the editing of keyboard-layouts, i.e., the position\r and appearance of each physical key.",
+  "main": "extensions.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:client": "http-server bower_components\\ace-builds",
+    "test:dir": "http-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aarlin/keyboard-layout-editor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aarlin/keyboard-layout-editor/issues"
+  },
+  "homepage": "https://github.com/aarlin/keyboard-layout-editor#readme",
+  "devDependencies": {
+    "grunt": "^1.3.0",
+    "serve": "^11.3.0"
+  },
+  "dependencies": {
+    "commander": "^6.1.0",
+    "http-server": "^0.12.3"
+  }
+}
