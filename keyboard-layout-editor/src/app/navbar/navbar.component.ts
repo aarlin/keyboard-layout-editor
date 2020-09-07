@@ -4,7 +4,7 @@ import * as pickers from '../../assets/pickers.json';
 import * as layouts from '../../assets/layouts.json';
 
 @Component({
-  selector: 'navbar',
+  selector: 'menu-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
