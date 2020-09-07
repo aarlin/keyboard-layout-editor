@@ -5,9 +5,9 @@ Nav Bar / Header
 <p>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>My App</span>
+      <span>keyboard-switch-editor.com</span>
       <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="keyboard" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
       </button>
     </mat-toolbar-row>
@@ -23,6 +23,16 @@ Nav Bar / Header
       </button>
     </mat-toolbar-row>
   </mat-toolbar>
+
+  <mat-menu #menu="matMenu">
+    <li class="dropdown-header">Standard Layouts:</li>
+    <button mat-menu-item (click)="loadPreset(preset.data)" *ngFor="let preset of presets">{{preset.name}}</button>
+    <li class="divider"></li>
+    <li class="dropdown-header">Complex Samples:</li>
+
+    <button mat-menu-item (click)="loadSample(sample.value)" *ngFor="let sample of samples | keyvalue">{{sample.key}}</button>
+
+  </mat-menu>
 </p>
 <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
   <div class="navbar-header">
@@ -33,28 +43,9 @@ Nav Bar / Header
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-
-    <!-- Main branding icon/title -->
-    <a class="navbar-brand" href="#"><i class="fa fa-keyboard-o"></i> keyboard-layout-editor.com</a>
   </div>
   <div class="collapse navbar-collapse navbar-ex1-collapse">
-
-    <!-- Left-aligned NavBar buttons -->
-    <ul class="nav navbar-nav">
-      <!-- Presets dropdown -->
-      <li class="dropdown" dropdown>
-        <a class="dropdown-toggle" dropdown-toggle><i class="fa fa-keyboard-o"></i> Preset <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li class="dropdown-header">Standard Layouts:</li>
-          <li *ngFor="let preset of presets"><a (click)="loadPreset(preset.data)" href="#">{{preset.name}}</a>
-          </li>
-          <li class="divider"></li>
-          <li class="dropdown-header">Complex Samples:</li>
-          <li *ngFor="let sample of samples | keyvalue"><a (click)="loadSample(sample.value)"
-              href="#">{{sample.key}}</a></li>
-        </ul>
-      </li>
-
+    <ul>
       <!-- Color swatches dropdown -->
       <li class="dropdown" dropdown>
         <a class="dropdown-toggle" dropdown-toggle><i class="fa fa-th"></i> Color Swatches <b class="caret"></b></a>
