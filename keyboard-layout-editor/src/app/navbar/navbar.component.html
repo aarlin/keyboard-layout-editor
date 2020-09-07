@@ -1,17 +1,77 @@
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-    <img
-      width="40"
-      alt="Angular Logo"
-      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-    />
-    <span>Welcome</span>
-      <div class="spacer"></div>
-      <a aria-label="Angular on twitter" target="_blank" rel="noopener" href="https://twitter.com/angular" title="Twitter">
-        <svg id="twitter-logo" height="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-          <rect width="400" height="400" fill="none"/>
-          <path d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23" fill="#fff"/>
-        </svg>
-      </a>
+<!--***********************************************
+Nav Bar / Header
+************************************************-->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="navbar-header">
+    <!-- Hamburger menu, when width is too small -->
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <!-- Main branding icon/title -->
+    <a class="navbar-brand" href="#"><i class="fa fa-keyboard-o"></i> keyboard-layout-editor.com</a>
   </div>
-  
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+    <!-- Left-aligned NavBar buttons -->
+    <ul class="nav navbar-nav">
+      <!-- Presets dropdown -->
+      <li class="dropdown" dropdown>
+        <a class="dropdown-toggle" dropdown-toggle><i class="fa fa-keyboard-o"></i> Preset <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Standard Layouts:</li>
+          <li *ngFor="let preset of presets"><a (click)="loadPreset(preset.data)" href="#">{{preset.name}}</a>
+          </li>
+          <li class="divider"></li>
+          <li class="dropdown-header">Complex Samples:</li>
+          <li *ngFor="let sample of samples | keyvalue"><a (click)="loadSample(sample.value)"
+              href="#">{{sample.key}}</a></li>
+        </ul>
+      </li>
+
+      <!-- Color swatches dropdown -->
+      <li class="dropdown" dropdown>
+        <a class="dropdown-toggle" dropdown-toggle><i class="fa fa-th"></i> Color Swatches <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <!-- <li *ngFor="pal in palettes"><a (click)="loadPalette(pal)" href="#">{{pal.name}}</a></li> -->
+          <li class="divider"></li>
+          <!-- <li><a (click)="makePaletteFromKeys()" href="#">Current key colors</a></li> -->
+        </ul>
+      </li>
+
+      <!-- Character Picker dropdown -->
+      <li class="dropdown" dropdown>
+        <a class="dropdown-toggle" dropdown-toggle><i class="fa fa-font"></i> Character Picker <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <!-- <li *ngFor="picker in pickers"><a (click)="loadCharacterPicker(picker)" href="#">{{picker.name}}</a></li> -->
+          <li class="divider"></li>
+          <!-- <li><a (click)="loadCharacterPicker(null)" href="#">User-Defined Glyphs</a></li> -->
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Right-aligned NavBar buttons -->
+    <ul class="nav navbar-nav navbar-right" style="">
+      <!-- Options button -->
+      <li><a href="#" (click)="showOptions()"><i class="fa fa-cog"></i> Options</a></li>
+      <!-- Permalink button -->
+      <li><a [href]="getPermalink()" target="_blank" (click)="dirty = false"><i class="fa fa-link"></i>
+          Permalink</a></li>
+      <!-- User button -->
+      <li *ngIf="user"><a href="#" (click)="userLogin()"><i class="fa fa-github"></i> Sign in with GitHub</a></li>
+      <li *ngIf="!user" class="dropdown" dropdown ng-cloak>
+        <!-- <a class="dropdown-toggle" dropdown-toggle><span [html]="user.avatar"></span> {{user.name}} <b class="caret"></b></a> -->
+        <ul class="dropdown-menu">
+          <!-- <li><a (click)="showSavedLayouts(false)" href="#"><i class="fa fa-folder-open-o"></i> My Layouts</a></li> -->
+          <!-- <li><a (click)="showSavedLayouts(true)" href="#"><i class="fa fa-star-o"></i> Starred Layouts</a></li> -->
+          <li class="divider"></li>
+          <!-- <li><a href="https://github.com/settings/connections/applications/{{githubClientId}}" target="_blank"><i class="fa fa-key"></i> Manage GitHub Permissions</a></li> -->
+          <li><a (click)="userLogout()" href="#"><i class="fa fa-sign-out"></i> Log out</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
